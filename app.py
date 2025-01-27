@@ -15,10 +15,13 @@ info = {
 cols = st.columns(num_players)
 player_scores = {}
 bonuses = {f"Player {idx + 1}": 0 for idx in range(num_players)}  # Initialize bonuses to 0
+names = {}
 
 for idx, col in enumerate(cols):
     with col:
         st.subheader(f"Player {idx + 1}")
+        name = st.text_input(f"Player {idx + 1} Name")
+        names[f"Player {idx + 1}"] = name
         scores = {}
         for token, hex_code in info.items():
             st.markdown(
@@ -52,8 +55,8 @@ for idx, col in enumerate(score_cols):
         player = f"Player {idx + 1}"
         if final_scores[player] == max_score:
             st.markdown(
-                f'<div style="color: #FFBF00; font-weight: bold; font-size: 24px;">🏅 {player}: {final_scores[player]}</div>',
+                f'<div style="color: #FFBF00; font-weight: bold; font-size: 24px;">🏅 {names[player]} ({player}) : {final_scores[player]}</div>',
                 unsafe_allow_html=True,
             )
         else:
-            st.markdown(f"**{player}:** {final_scores[player]}")
+            st.markdown(f"**{names[player]} ({player}) :** {final_scores[player]}")
