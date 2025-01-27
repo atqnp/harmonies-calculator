@@ -1,6 +1,5 @@
 import streamlit as st
 
-st.image("HARMONIES_LOGO.png")
 st.title("Harmonies Score Calculator")
 
 num_players = st.number_input("Number of Players", min_value=1, step=1, max_value=4)
